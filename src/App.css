@@ -1,38 +1,270 @@
-.App {
-  text-align: center;
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@keyframes shooting {
+  0% { 
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+  100% { 
+    transform: translateX(300px) translateY(300px);
+    opacity: 0;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
 }
 
-.App-link {
-  color: #61dafb;
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes unfold {
+  0% { transform: rotateX(90deg); opacity: 0; }
+  100% { transform: rotateX(0deg); opacity: 1; }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-unfold {
+  animation: unfold 0.8s ease-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out;
+}
+
+@keyframes cloud-drift {
+  0% { 
+    transform: translateX(0);
   }
-  to {
-    transform: rotate(360deg);
+ 100% { 
+    transform: translateX(120vw);
   }
+}
+
+@keyframes firefly-glow {
+  0%, 100% { 
+    opacity: 0.3;
+    transform: scale(1);
+  }
+ 50% { 
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
+
+@keyframes firefly-float {
+  0%, 100% { 
+    transform: translateY(0) translateX(0);
+  }
+  25% { 
+    transform: translateY(-20px) translateX(10px);
+  }
+  50% { 
+    transform: translateY(-10px) translateX(-10px);
+  }
+  75% { 
+    transform: translateY(-30px) translateX(5px);
+  }
+}
+
+.aurora {
+  position: absolute;
+  width: 100%;
+  height: 200px;
+ filter: blur(40px);
+  opacity: 0.3;
+}
+
+.aurora-1 {
+  top: 0;
+  background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.4), rgba(59, 130, 246, 0.4), transparent);
+  animation: aurora-wave 15s ease-in-out infinite;
+}
+
+.aurora-2 {
+  top: 50px;
+  background: linear-gradient(90deg, transparent, rgba(147, 51, 234, 0.3), rgba(59, 130, 246, 0.3), transparent);
+  animation: aurora-wave 20s ease-in-out infinite 5s;
+}
+
+.aurora-3 {
+  top: 100px;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), rgba(34, 211, 238, 0.3), transparent);
+  animation: aurora-wave 18s ease-in-out infinite 10s;
+}
+
+@keyframes aurora-wave {
+  0%, 100% {
+    transform: translateX(-50%) scaleY(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateX(50%) scaleY(1.5);
+    opacity: 0.5;
+  }
+}
+
+.camera-start {
+  transform: translateY(60vh) scale(1);
+}
+
+.camera-move-up {
+  transform: translateY(0) scale(1);
+}
+
+@media (max-width: 640px) {
+  .camera-start {
+    transform: translateY(50vh) scale(1);
+  }
+  
+  .camera-move-up {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes letter-fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes letter-entrance {
+  0% { 
+    transform: translate(-100vw, -100vh) rotate(0deg) scale(0.1);
+    opacity: 0;
+  }
+  30% { 
+    transform: translate(40vw, 30vh) rotate(180deg) scale(0.3);
+    opacity: 1;
+  }
+  50% { 
+    transform: translate(-20vw, 20vh) rotate(360deg) scale(0.5);
+    opacity: 1;
+  }
+  65% { 
+    transform: translate(15vw, -10vh) rotate(540deg) scale(0.7);
+    opacity: 1;
+  }
+  78% { 
+    transform: translate(-8vw, 5vh) rotate(720deg) scale(0.85);
+    opacity: 1;
+  }
+  88% { 
+    transform: translate(0, 0) rotate(720deg) scale(1.2);
+    opacity: 1;
+  }
+  93% { 
+    transform: translate(0, 0) rotate(720deg) scale(0.9);
+    opacity: 1;
+  }
+  97% { 
+    transform: translate(0, 0) rotate(720deg) scale(1.1);
+    opacity: 1;
+  }
+  100% { 
+    transform: translate(0, 0) rotate(720deg) scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-letter-entrance {
+  animation: letter-entrance 10s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes letter-exit {
+  0% { 
+    transform: translate(0, 0) rotate(720deg) scale(1);
+    opacity: 1;
+  }
+  10% { 
+    transform: translate(0, 0) rotate(720deg) scale(0.9);
+    opacity: 1;
+  }
+  20% { 
+    transform: translate(-8vw, 5vh) rotate(630deg) scale(0.85);
+    opacity: 1;
+  }
+  35% { 
+    transform: translate(15vw, -10vh) rotate(540deg) scale(0.7);
+    opacity: 1;
+  }
+  50% { 
+    transform: translate(-20vw, 20vh) rotate(360deg) scale(0.5);
+    opacity: 1;
+  }
+  70% { 
+    transform: translate(40vw, 30vh) rotate(180deg) scale(0.3);
+    opacity: 1;
+  }
+  90% { 
+    transform: translate(80vw, -60vh) rotate(45deg) scale(0.15);
+    opacity: 0.5;
+  }
+  100% { 
+    transform: translate(150vw, -150vh) rotate(0deg) scale(0.05);
+    opacity: 0;
+ }
+}
+
+.animate-letter-exit {
+  animation: letter-exit 10s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+ animation-fill-mode: forwards;
+}
+
+@keyframes headphones-appear {
+  0% { 
+    transform: translateY(10px) scale(0.5);
+    opacity: 0;
+  }
+ 50% { 
+    transform: translateY(-5px) scale(1.1);
+    opacity: 1;
+  }
+  100% { 
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-headphones-appear {
+  animation: headphones-appear 1s ease-out;
+}
+
+@keyframes sparkle {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.3;
+    transform: scale(1.5);
+  }
+}
+
+.animate-sparkle {
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+@keyframes note {
+  0% { 
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% { 
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+.animate-note {
+  animation: note 2s ease-in-out infinite;
 }

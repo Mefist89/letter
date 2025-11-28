@@ -1,8 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import NightLetterApp from './App';
+import LoadingPage from './LoadingPage';
+
+// Simple hash-based routing
+const App = () => {
+  const [route, setRoute] = React.useState(window.location.hash.substring(1) || '/');
+  
+  React.useEffect(() => {
+    const handleHashChange = () => {
+      setRoute(window.location.hash.substring(1) || '/');
+    };
+    
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+  
+  if (route === '/app') {
+    return <NightLetterApp />;
+  } else {
+    return <LoadingPage />;
+  }
+};
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,8 +32,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
