@@ -4,18 +4,12 @@ const NightLetterApp = () => {
   const [showLetter, setShowLetter] = useState(false);
   const [letterOpen, setLetterOpen] = useState(false);
   const [displayedText, setDisplayedText] = useState("");
-  const [showButtons, setShowButtons] = useState(false);
   const [stars, setStars] = useState<any[]>([]);
   const [shootingStars, setShootingStars] = useState<any[]>([]);
-  const [backgroundImage, setBackgroundImage] = useState("");
+  const [backgroundImage] = useState("");
   const [clouds, setClouds] = useState<any[]>([]);
   const [fireflies, setFireflies] = useState<any[]>([]);
-  const [cameraMove, setCameraMove] = useState(false);
   const [letterClosing, setLetterClosing] = useState(false);
-  const [showGirl, setShowGirl] = useState(false);
-  const [openingGift, setOpeningGift] = useState(false);
-  const [showHeadphones, setShowHeadphones] = useState(false);
-  const [audioPlaying, setAudioPlaying] = useState(false);
 
   const questionText =
     "Hi, baby! Hear that Eenie Meenie playing? My love is flying your way with this song to kick that silly cold to the curb! I'm really worried about you and want you back to your normal self as fast as possible. This isn't just a letter flying across the screen — it's delivering digital vitamins, tons of warmth, and my biggest hugs. Feel better soon, sunshine!";
@@ -55,7 +49,7 @@ const NightLetterApp = () => {
     }, 10000);
 
     const cameraTimer = setTimeout(() => {
-      setCameraMove(true);
+      // camera move placeholder
     }, 10000);
 
     const shootingStarInterval = setInterval(() => {
@@ -91,24 +85,11 @@ const NightLetterApp = () => {
       displayedText.length === questionText.length &&
       !letterClosing
     ) {
-      setTimeout(() => setShowButtons(true), 500);
       // Через 5 секунд после написания текста закрываем письмо
       setTimeout(() => {
         setLetterClosing(true);
         // Сразу скрываем открытое письмо
         setLetterOpen(false);
-        // Через 3 секунды после начала полёта показываем девушку
-        setTimeout(() => {
-          setShowGirl(true);
-          // Через 2 секунды девушка открывает подарок
-          setTimeout(() => {
-            setOpeningGift(true);
-            // Через 1 секунду показываем наушники
-            setTimeout(() => {
-              setShowHeadphones(true);
-            }, 1000);
-          }, 2000);
-        }, 3000);
       }, 5000);
     }
   }, [letterOpen, displayedText, letterClosing]);
@@ -123,7 +104,6 @@ const NightLetterApp = () => {
       try {
         await audio.play();
         isPlaying = true;
-        setAudioPlaying(true);
       } catch (error) {
         console.log(
           "Audio play failed (this is expected on first load due to user interaction policy):",
@@ -160,13 +140,7 @@ const NightLetterApp = () => {
     }
   };
 
-  const handleResponse = (response: string) => {
-    if (response === "yes") {
-      alert("Замечательно! 💙");
-    } else {
-      alert("Жаль... Может быть, в другой раз? 🌙");
-    }
-  };
+
 
   return (
     <div id="app-page" className="relative w-full h-screen overflow-hidden">
